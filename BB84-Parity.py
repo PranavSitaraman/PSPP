@@ -1,6 +1,5 @@
 
 import math
-# T R S A B C N
 compare = [
     [0,     60,     60,     109.5,    109.5,    109.5,    180],
     [60,    0,      120,    99.6,    150.9,    57.3,     120],
@@ -11,7 +10,9 @@ compare = [
     [180,   120,    120,    70.5,     70.5,     70.5,     0]
 ]
 triangle = [1, 2, 6]
+
 print("BB84-Parity")
+
 prob = 0
 for i in range(7):
     for j in range(7):
@@ -25,11 +26,13 @@ for i in range(7):
             factortwo = 1/8
         prob += factorone * factortwo * pow(math.cos(compare[i][j]/2 * math.pi/180), 4)
 print("Proportion of Key Eavesdropped: ", prob)
+
 prob = 0
 for i in range(7):
     factorone = 1/7
     prob += factorone * (pow(math.cos(compare[i][i]/2 * math.pi/180), 4) + pow(1 - pow(math.cos(compare[i][i]/2 * math.pi/180), 2), 2))
 print("Proportion of Checked Bits Match (No Interference): ", prob)
+
 prob = 0
 for i in range(7):
     for j in range(7):
@@ -43,4 +46,5 @@ for i in range(7):
             factortwo = 1/8
         prob += factorone * factortwo * (pow(math.cos(compare[i][j]/2 * math.pi/180), 4) + pow(1 - pow(math.cos(compare[i][j]/2 * math.pi/180), 2), 2))
 print("Proportion of Checked Bits Match (Interference): ", prob)
+
 print("Proportion of Key Incorrect: ", 1 - prob)
